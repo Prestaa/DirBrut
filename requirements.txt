@@ -1,0 +1,6 @@
+termcolor
+requests
+argparse
+keyboard
+datetime
+sys
