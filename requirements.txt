@@ -3,4 +3,3 @@ requests
 argparse
 keyboard
 datetime
-sys
