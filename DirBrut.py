@@ -83,21 +83,22 @@ def Bruteforcer(url, wlst, ua):
     v = 0   
     for i in range( 0 , len(w) ):
                
-        if keyboard.is_pressed("P") or keyboard.is_pressed("p") :
+        if keyboard.is_pressed("p") :
             print(colored("""\n[i] Script mis en pause """, "yellow"))
             p_press = True
             
             while p_press==True:
-                if keyboard.is_pressed("r") or keyboard.is_pressed("R"):
+                if keyboard.is_pressed("R"):
+                    print(colored("[+] Restarting", 'green'))
                     break
                 else:
                     continue
                     
-        if keyboard.is_pressed("Q") or keyboard.is_pressed("q") :
+        if keyboard.is_pressed("q") :
             print(colored("\n[!] Exiting...", 'red'))
             exit()
         
-        if keyboard.is_pressed("S") or keyboard.is_pressed("s") :
+        if keyboard.is_pressed("s") :
             print("")
             print(f"-> Ligne       : {i} / {len(w)} ")
             print(f"-> Progression : { int( ( i / len(w) ) * 100) }% ")
