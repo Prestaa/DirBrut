@@ -5,9 +5,7 @@ DirBrut is a python3 command-line tool for web directory/file bruteforcing.
 
 ## Installation :
 ```
-git clone https://github.com/PrestaDZ/DirBrut.git
-cd DirBrut
-pip3 install -r requirements.txt
+git clone https://github.com/PrestaDZ/DirBrut.git && cd DirBrut && pip3 install -r requirements.txt
 ```
 
 ## Usage :
