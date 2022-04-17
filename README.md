@@ -1,11 +1,11 @@
-# Installation :
+## Installation :
 ```
 git clone https://github.com/PrestaDZ/DirBrut.git
 cd DirBrut
 pip3 install -r requirements.txt
 ```
 
-# Usage :
+## Usage :
 
 ```
 $ python3 DirBrut.py -h
@@ -23,7 +23,7 @@ optional arguments:
 ```
 
 
-# Exemple :
+## Exemple :
 
 ```
 $ python3 DirBrut.py -u https://example.com -w common.txt -ua Mozilla/5.0
@@ -60,18 +60,28 @@ HotKeys:
 
 ```
 
-Attention, pour utiliser les raccourcis claviers vous devez enfoncer la touche jusqu'à ce que l'effet voulu soit obtenu.
+##Hotkeys:
 
-Enfoncer S affichera un résumé :
+S:
 ```
 -> Ligne       : 307 / 4716 
 -> Progression : 6%
 -> Fichiers    : 11 Fichiers/Répértoires trouvés
 ```
-Enfoncer P mettra le script en pause, R permettra de le relancer. Enfin Q permet de quitter le programme proprement.
+
+P:
+```
+Pause the script
+```
+
+R
+```
+Restart the script
+```
+permettra de le relancer. Enfin Q permet de quitter le programme proprement.
 
 
-# Informations :
+## Informations :
 
-- Written by : Presta_DZ
+- Written by : Presta
 - Language : Python3
