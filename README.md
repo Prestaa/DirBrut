@@ -79,10 +79,16 @@ P:
 Pause the script
 ```
 
-R
+R:
 ```
-Restart the script
+Restart (after pausing) the script
 ```
+
+Q:
+```
+Quit the script
+```
+
 permettra de le relancer. Enfin Q permet de quitter le programme proprement.
 
 
