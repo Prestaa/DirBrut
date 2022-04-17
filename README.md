@@ -1,3 +1,8 @@
+# DirBrut
+
+DirBrut is a python3 command-line tool for directory and file bruteforcing.
+
+
 ## Installation :
 ```
 git clone https://github.com/PrestaDZ/DirBrut.git
