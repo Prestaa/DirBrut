@@ -65,7 +65,7 @@ HotKeys:
 
 ```
 
-##Hotkeys:
+## Hotkeys:
 
 S:
 ```
