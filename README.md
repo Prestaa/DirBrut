@@ -10,87 +10,55 @@ cd DirBrut
 pip3 install -r requirements.txt
 ```
 
-## Usage :
+## Usage
 
-```
-$ python3 DirBrut.py -h
-
-usage: DirBrut.py [-h] -u URL -w WORDLIST [-ua USER_AGENT]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -u URL, --url URL     The url of the website
-  -w WORDLIST, --wordlist WORDLIST
-                        The wordlist
-  -ua USER_AGENT, --user-agent USER_AGENT
-                        Un user-agent
-                        
-```
-
+![dirbrhe](https://user-images.githubusercontent.com/95232318/164915229-6c61077e-bef5-4d26-a717-8f100c101107.png)
 
 ## Exemple :
 
-```
-$ python3 DirBrut.py -u https://example.com -w common.txt -ua Mozilla/5.0
-
- ________  ___  ________  ________  ________  ___  ___  _________
-|\   ___ \|\  \|\   __  \|\   __  \|\   __  \|\  \|\  \|\___   ___\
-\ \  \_|\ \ \  \ \  \|\  \ \  \|\ /\ \  \|\  \ \  \\\  \|___ \  \_|
- \ \  \ \\ \ \  \ \   _  _\ \   __  \ \   _  _\ \  \\\  \   \ \  \
-  \ \  \_\\ \ \  \ \  \\  \\ \  \|\  \ \  \\  \\ \  \\\  \   \ \  \
-   \ \_______\ \__\ \__\\ _\\ \_______\ \__\\ _\\ \_______\   \ \__\
-    \|_______|\|__|\|__|\|__|\|_______|\|__|\|__|\|_______|    \|__|
-
-⸻⸻⸻⸻⸻⸻⸻⸻⸻
-[+] Method:     HTTP GET
-[+] User-agent: Mozilla/5.0
-[+] Target:     https://example.com
-[+] Wordlist:   common.txt
-[+] Taille:     4713 mots
-
-⸻⸻⸻⸻⸻⸻⸻⸻⸻
-HotKeys:
-[P] : Pause | [R] Restart | [Q] : Quitter | [S] : Stats
-⸻⸻⸻⸻⸻⸻⸻⸻⸻
+![Capture d’écran_2022-04-23_18-45-10](https://user-images.githubusercontent.com/95232318/164915495-02b1e537-21ad-4419-a938-3f27889ccf0b.png)
 
 
-[i] Lancement du script à : 15:27:12
-
-/admin : 401
-/index : 200
-/arch : 200
-/assets : 403
-
-[i] Terminé à 15:37:55, taked 10m43s
-
-```
 
 ## Hotkeys:
 
 S:
 ```
--> Ligne       : 307 / 4716 
--> Progression : 6%
--> Fichiers    : 11 Fichiers/Répértoires trouvés
+Displays infos
 ```
+![s](https://user-images.githubusercontent.com/95232318/164915821-ad5b5cc4-c542-461e-ac0b-94dc8a4fd73c.png)
+
 
 P:
 ```
 Pause the script
 ```
+![p](https://user-images.githubusercontent.com/95232318/164915736-ee8ad899-f7b8-43ea-80ff-086e2f85b0a9.png)
+
 
 R:
 ```
 Restart (after pausing) the script
 ```
+![r](https://user-images.githubusercontent.com/95232318/164915745-da154078-9a24-41c9-b79a-924a14a101d5.png)
+
 
 Q:
 ```
 Quit the script
 ```
+![q](https://user-images.githubusercontent.com/95232318/164915773-3b66965d-9c19-4f35-bd3d-935dffbeea36.png)
+
 
 permettra de le relancer. Enfin Q permet de quitter le programme proprement.
 
+## Credits :
+
+Credits to   
+
+- https://dvwa.co.uk/ 
+- https://sourceforge.net/projects/metasploitable/files/Metasploitable2/
+- https://github.com/danielmiessler/SecLists
 
 ## Informations :
 
