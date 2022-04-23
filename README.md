@@ -25,7 +25,7 @@ pip3 install -r requirements.txt
 
 S:
 ```
-Displays infos
+Display infos
 ```
 ![s](https://user-images.githubusercontent.com/95232318/164916079-9c65013a-a8e5-43b4-bc2f-4646b5b7c5ba.png)
 
@@ -50,8 +50,6 @@ Quit the script
 ```
 ![q](https://user-images.githubusercontent.com/95232318/164916040-2bf0ed75-4fac-46f1-beef-26d96b5f2461.png)
 
-
-permettra de le relancer. Enfin Q permet de quitter le programme proprement.
 
 ## Credits :
 
