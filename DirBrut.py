@@ -26,12 +26,12 @@ def Banner(wlst, url, ua):
 [+] Method:     HTTP GET
 [+] User-agent: {ua}
 [+] Target:     {url}
-[+] Wordlist:   {wlst} mots  
-[+] Taille:     {taille}    
+[+] Wordlist:   {wlst} 
+[+] Taille:     {taille} words   
 
 ⸻⸻⸻⸻⸻⸻⸻⸻⸻    
 HotKeys:
-[P] : Pause | [R] Restart | [Q] : Quitter | [S] : Stats
+[P] : Pause | [R] Restart | [Q] : Quit | [S] : Stats
 ⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
 """)   
@@ -73,18 +73,18 @@ def Bruteforcer(url, wlst, ua):
             w = wordlist.read().split()
     
     except FileNotFoundError:
-        print(colored("[!] Le fichier n'existe pas", 'red'))
+        print(colored("[!] File does note xist", 'red'))
         exit()
   
     except PermissionError:
-        print(colored("[!] Permission refusée", 'red'))
+        print(colored("[!] Permission denied", 'red'))
         exit()
         
     v = 0   
     for i in range( 0 , len(w) ):
                
         if keyboard.is_pressed("p") :
-            print(colored("""\n[i] Script mis en pause """, "yellow"))
+            print(colored("""\n[i] Paused """, "yellow"))
             p_press = True
             
             while p_press==True:
@@ -100,9 +100,9 @@ def Bruteforcer(url, wlst, ua):
         
         if keyboard.is_pressed("s") :
             print("")
-            print(f"-> Ligne       : {i} / {len(w)} ")
-            print(f"-> Progression : { int( ( i / len(w) ) * 100) }% ")
-            print(f"-> Fichiers    : {v} Fichiers/Répértoires trouvés")
+            print(f"-> Line       : {i} / {len(w)} ")
+            print(f"-> Progress   : { int( ( i / len(w) ) * 100) }% ")
+            print(f"-> Files      : {v} Files/Dir founds")
             print("")
         
         site = f"{url}/{w[i]}"
@@ -131,21 +131,20 @@ def printr(code, site):
    
              
 def main(url , wlst, ua):
-    Banner(wlst,url, ua)
 
     start = datetime.now()
-    print(colored(f"[i] Lancement du script à : " + start.strftime("%H:%M:%S")+ "\n" , "yellow")) 
+    print(colored(f"[i] Starting script at : " + start.strftime("%H:%M:%S")+ "\n" , "yellow")) 
     
     Bruteforcer(url,wlst, ua)
     
     endl = datetime.now()
     
     Time = TempsPris(start, endl)
-    print( colored(f"\n[i] Terminé à " + endl.strftime("%H:%M:%S") + ", taked " + Time , "yellow") )
+    print( colored(f"\n[i] Ending script at " + endl.strftime("%H:%M:%S") + ", taked " + Time , "yellow") )
         
 
 if __name__ == "__main__":
-    
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -168,5 +167,6 @@ if __name__ == "__main__":
         default = ""
     ) 
     args = parser.parse_args()  ; url = args.url ; wlst = args.wordlist ; ua = args.user_agent
-    
+
+    Banner(wlst, url, ua)    
     main(url, wlst, ua)
