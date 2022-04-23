@@ -1,56 +1,41 @@
 #!/usr/bin/env python3
 
-from termcolor import colored
 from datetime import datetime
+from termcolor import colored
 from sys import exit
+import requests
 import argparse
-import socket
+import keyboard
 
-def Banner():
-    
-    print(colored("""
-     ____                               ____           _     _               
-    | __ )  __ _ _ __  _ __   ___ _ __ / ___|_ __ __ _| |__ | |__   ___ _ __ 
-    |  _ \ / _` | '_ \| '_ \ / _ \ '__| |  _| '__/ _` | '_ \| '_ \ / _ \ '__|
-    | |_) | (_| | | | | | | |  __/ |  | |_| | | | (_| | |_) | |_) |  __/ |   
-    |____/ \__,_|_| |_|_| |_|\___|_|   \____|_|  \__,_|_.__/|_.__/ \___|_|       
-    """, 'green'))
-    
-    print(colored("   --< Search for banners\n   --< By @Presta\n\n", 'red'))
+def Banner(wlst, url, ua):
+    taille = sum(1 for _ in open(wlst))
 
+    if len(ua) == 0:
+        ua="None" 
+        
+    print(f"""
+ ________  ___  ________  ________  ________  ___  ___  _________   
+|\   ___ \|\  \|\   __  \|\   __  \|\   __  \|\  \|\  \|\___   ___\ 
+\ \  \_|\ \ \  \ \  \|\  \ \  \|\ /\ \  \|\  \ \  \\\\\  \|___ \  \_| 
+ \ \  \ \\\\ \ \  \ \   _  _\ \   __  \ \   _  _\ \  \\\\\  \   \ \  \  
+  \ \  \_\\\\ \ \  \ \  \\\\  \\\\ \  \|\  \ \  \\\\  \\\\ \  \\\\\  \   \ \  \ 
+   \ \_______\ \__\ \__\\\\ _\\\\ \_______\ \__\\\\ _\\\\ \_______\   \ \__\\
+    \|_______|\|__|\|__|\|__|\|_______|\|__|\|__|\|_______|    \|__|
+                                                                    
+⸻⸻⸻⸻⸻⸻⸻⸻⸻
+[+] Method:     HTTP GET
+[+] User-agent: {ua}
+[+] Target:     {url}
+[+] Wordlist:   {wlst} mots  
+[+] Taille:     {taille}    
 
-def StripPorts(ports):
-    p1=""
-    p2=""
-    
-    if "-" not in ports:
-        print(colored("[!] --port option must be like : -p 5-100  ", 'red'))
-        exit()
-    
-    
-    for i in range(0,len(ports)):
-        if ports[i]=="-":
-            nbr = i+1
-            break
-        else:
-            p1+=ports[i]
-            
-    for i in range(nbr, len(ports)):
-        p2 += ports[i]
-    
-    try:
-        p1 = int(p1)
-        p2 = int(p2)
-    except:
-        print(colored("[!] Port must be numbers !", 'red'))
-        exit()
-    
-    if p1 > 65535 or p2 > 65535:
-        print(colored("[!] Port must be in range 0 to 65535", "red"))
-        exit()
+⸻⸻⸻⸻⸻⸻⸻⸻⸻    
+HotKeys:
+[P] : Pause | [R] Restart | [Q] : Quitter | [S] : Stats
+⸻⸻⸻⸻⸻⸻⸻⸻⸻
 
-    liste = [p1, p2]      
-    return liste
+""")   
+
 
 def TempsPris(start,endl):
         
@@ -80,92 +65,108 @@ def TempsPris(start,endl):
         time = "0s"
     
     return time    
+   
 
-def GetBanner(ip, porttuple, time):
-    
-    p1 = int(porttuple[0])
-    p2 = int(porttuple[1])+1
-    
-    for i in range(p1,p2):   
-        
-        try:     
-            s = socket.socket()
-            s.settimeout(time)
-            s.connect(( str(ip) , int(i) ))
-            
-        except ConnectionRefusedError:
-            pass
-        
-        except socket.gaierror:
-            print(colored(f"[!] Cannot connect to {ip} try to increase the timeout value or check te ip adress", 'red'))
-            exit()
-        except OSError:
-            print(colored(f"[!] Cannot connect to {ip} try to increase the timeout value or check te ip adress", 'red'))
-            exit()   
-        var=""
-        
-        try:
-            var = str(s.recv(1024).decode('UTF-8'))
-        except socket.timeout:
-            pass
-        except UnicodeDecodeError:
-            pass
-        except OSError:
-            print(colored(f"[!] Cannot connect to {ip} try to increase the timeout value or check te ip adress", 'red'))
-            exit()
-            
-        if len(var) >0:          
-            print(colored(f"[+] At port {i} : " , 'green') + colored( var, 'red'), end="") 
-
-
-def main(ip, porttuple, time):
-    
+def Bruteforcer(url, wlst, ua):
     try:
-        time = int(time)
-    except:
-        print(colored("[!] Time must be an integer !", 'red'))
-        exit()
-    if time<5:
-        print(colored(f"[!] The timeout is set to {time}, programm may not work correctly", 'red'))
-
-        
-    start = datetime.now()
-    print(colored(f"[i] Starting at : " + start.strftime("%H:%M:%S")+ "\n" , "yellow"))
+        with open(wlst, "r", encoding = "ISO-8859-1") as wordlist:
+            w = wordlist.read().split()
     
-    GetBanner(ip, porttuple,time)
+    except FileNotFoundError:
+        print(colored("[!] Le fichier n'existe pas", 'red'))
+        exit()
+  
+    except PermissionError:
+        print(colored("[!] Permission refusée", 'red'))
+        exit()
+        
+    v = 0   
+    for i in range( 0 , len(w) ):
+               
+        if keyboard.is_pressed("p") :
+            print(colored("""\n[i] Script mis en pause """, "yellow"))
+            p_press = True
+            
+            while p_press==True:
+                if keyboard.is_pressed("r"):
+                    print(colored("[+] Restart", 'green'))
+                    break
+                else:
+                    continue
+                    
+        if keyboard.is_pressed("q") :
+            print(colored("\n[!] Exiting...", 'red'))
+            exit()
+        
+        if keyboard.is_pressed("s") :
+            print("")
+            print(f"-> Ligne       : {i} / {len(w)} ")
+            print(f"-> Progression : { int( ( i / len(w) ) * 100) }% ")
+            print(f"-> Fichiers    : {v} Fichiers/Répértoires trouvés")
+            print("")
+        
+        site = f"{url}/{w[i]}"
+        
+        headers = {
+            "User-Agent":ua
+        }
+        r = requests.get(site, headers=headers )
+        
+        if r.status_code !=404:
+            printr(r.status_code, w[i])
+            v += 1
+
+            
+def printr(code, site):
+    if 100 <= code < 300:
+        color =  "green"    
+    elif 300 <= code < 400:
+        color =  "yellow"
+    elif 400 <= code < 500:
+        color = "red"
+    elif 500 <= code <= 599:
+        color = "purple"
+
+    print(colored( f"/{site} : {code}" , color)) 
+   
+             
+def main(url , wlst, ua):
+    Banner(wlst,url, ua)
+
+    start = datetime.now()
+    print(colored(f"[i] Lancement du script à : " + start.strftime("%H:%M:%S")+ "\n" , "yellow")) 
+    
+    Bruteforcer(url,wlst, ua)
     
     endl = datetime.now()
-    Time = TempsPris(start, endl)
-   
-    print( colored(f"\n[i] Ending at " + endl.strftime("%H:%M:%S") + ", scanned in " + Time , "yellow") )
-
     
+    Time = TempsPris(start, endl)
+    print( colored(f"\n[i] Terminé à " + endl.strftime("%H:%M:%S") + ", taked " + Time , "yellow") )
+        
+
 if __name__ == "__main__":
-    Banner()
-    parser = argparse.ArgumentParser("")
+    
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "-i",
-        "--ip",
-        help="The ip address.",
+        "-u",
+        "--url",
+        help="The url of the website",
         required=True
         )
     parser.add_argument(
-        "-p",
-        "--ports",
-        help="Range port to scan (default is 1-65535) | ( python3 BannerGrabber.py -p 1-100 ).",
-        required=False,
-        default="1-65535"
-        )
+        "-w",
+        "--wordlist",
+        help="The wordlist",
+        required=True
+    ) 
     parser.add_argument(
-        "-t",
-        "--timeout",
-        help="time before closing the communication in second, minimum is 5",
+        "-ua",
+        "--user-agent",
+        help="Un user-agent",
         required=False,
-        default="5"
-        )     
-    args = parser.parse_args()  ; ip_add = args.ip ; ports=args.ports ; time=args.timeout
-      
-    porttuple = StripPorts(ports)
+        default = ""
+    ) 
+    args = parser.parse_args()  ; url = args.url ; wlst = args.wordlist ; ua = args.user_agent
     
-    main(ip_add, porttuple, time)
+    main(url, wlst, ua)
